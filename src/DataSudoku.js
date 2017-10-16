@@ -7,11 +7,10 @@
 	// 	.
 	// 	List([val80, val81, .., val88]),
 	// )]
-
-import { List, fromJS, Range } from 'immutable';
+import { List, Range } from 'immutable';
 
 const Sudoku = function(listOfLists) {
-	const ImmutableSudoku = listOfLists;
+	const ImmutableSudoku = Object.create(listOfLists);
 	const getRow = sudoku => i => {
 		return sudoku.get(i);
 	};
@@ -34,23 +33,23 @@ const Sudoku = function(listOfLists) {
 	const getField = sudoku => (i,j) => {
 		return sudoku.get(i).get(j);
 	};
-	const reverse = sudoku => {
-		return List(Range(0,Infinity).take(9).toList().map(x => sudoku.getColumn(x))); 
+	const rvrs = sudoku => {
+		return Sudoku( List([0,1,2,3,4,5,6,7,8]).map(x => sudoku.getColumn(x)) ); 
 	};
 	const setField = sudoku => (fieldRow,fieldColumn) => value => {
 		return sudoku.set(fieldRow, sudoku.get(fieldRow).set(fieldColumn, value));
 	};
 	const boxify = sudoku => {
-		return Range(0,Infinity).take(9).map(x => sudoku.getBox(x));
+		return Sudoku( Range(0,Infinity).take(9).map(x => sudoku.getBox(x)) );
 	};
 	ImmutableSudoku.getRow = getRow(ImmutableSudoku);
 	ImmutableSudoku.getColumn = getColumn(ImmutableSudoku);
 	ImmutableSudoku.getBox = getBox(ImmutableSudoku);
 	ImmutableSudoku.getField = getField(ImmutableSudoku);
-	ImmutableSudoku.reverse = reverse(ImmutableSudoku);
+	ImmutableSudoku.rvrs = () => rvrs(ImmutableSudoku);
+	ImmutableSudoku.boxify = () => boxify(ImmutableSudoku);
 	ImmutableSudoku.setField = setField(ImmutableSudoku);
-	ImmutableSudoku.boxify = boxify(ImmutableSudoku);
-	//ImmutableSudoku.id = ImmutableSudoku.reverse.reverse;
+	//ImmutableSudoku.id = ImmutableSudoku.rvrs.rvrs;
 
 	return ImmutableSudoku;
 };

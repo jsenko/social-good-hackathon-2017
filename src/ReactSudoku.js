@@ -21,7 +21,7 @@ class SudokuGame extends Component {
 		const sudokuTemplate = Sudoku(fromJS(JSON).toList());
 		console.log(sudokuTemplate.toJS());
 		this.state = {
-			history: List([sudokuTemplate]),
+			history: List([sudokuTemplate.rvrs().boxify()]),
 			pointInHistory: -1,	//negative indices in '.get' method of 'List' in immutableJS count from end of the list e.g. List([0,1,2,3]).get(-1) returns 3
 		}
 	}
