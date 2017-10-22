@@ -1,0 +1,90 @@
+01 generální praxe;1;generální praxe;0;general
+02 občanské právo;2;občanské právo;1;obcan
+03 bytové právo (vlastnictví, nájem, SVJ);3;bytové právo (vlastnictví, nájem, SVJ);2;bytov
+04 dědické právo;4;dědické právo;3;dedic
+05 bankovní právo, kapitálové trhy;5;bankovní právo, kapitálové trhy;4;bank
+06 finanční právo, cenné papíry, fúze a akvizice, daně;6;finanční právo, cenné papíry, fúze a akvizice, daně;5;financ
+07 cenné papíry;7;cenné papíry;6;cenn
+07 investice (investiční bankovnictví);7;investice (investiční bankovnictví);7;investic
+08 devizové právo;8;devizové právo;8;deviz
+08 daně, poplatky;8;daně, poplatky;9;dan
+09 celní právo;9;celní právo;10;celn
+10 kanonické právo;10;kanonické právo;11;kanon
+10 děti nezletilé, péče, výživné;10;děti nezletilé, péče, výživné;12;vyziv
+11 obecně prospěšné společnosti, nadace, spolky;11;obecně prospěšné společnosti, nadace, spolky;13;spolk
+12 dražby;12;dražby;14;drazb
+12 ústavní právo;12;ústavní právo;15;ustavn
+13 lidská práva a svobody;13;lidská práva a svobody;16;lidsk
+14 evropské  právo;14;evropské  právo;17;evropske prav
+14 elektronický přenos dat, právo softwarové;14;elektronický přenos dat, právo softwarové;18;softwar
+15 zastupování před evropskými soudy;15;zastupování před evropskými soudy;19;evropskymi soud
+16 obchodní právo;16;obchodní právo;20;obchodn
+17 obchodní společnosti, družstva;17;obchodní společnosti, družstva;21;druzstv
+18 insolvenční právo;18;insolvenční právo;22;insolvenc
+18 fúze a akvizice;18;fúze a akvizice;23;akvizic
+19 e-commerce;19;e-commerce;24;commerce
+19 horní právo;19;horní právo;25;horni prav
+20 licenční smlouvy, franchising;20;licenční smlouvy, franchising;26;licencn
+21 ochrana průmyslového a duševního vlastnictví;21;ochrana průmyslového a duševního vlastnictví;27;dusevni vlastn
+22 nekalá soutěž;22;nekalá soutěž;28;nekal
+22 kapitálový trh;22;kapitálový trh;29;kapitalovy trh
+23 autorské právo;23;autorské právo;30;autorske prav
+24 leasing;24;leasing;31;leasing
+24 mediální právo, reklama, ochrana osobních údajů;24;mediální právo, reklama, ochrana osobních údajů;32;medialn
+25 ochrana osobnosti;25;ochrana osobnosti;33;ochrana osobn
+25 lesní právo;25;lesní právo;34;lesn
+26 mezinárodní právo veřejné;26;mezinárodní právo veřejné;35;mezinarodn
+29 trestní právo;29;trestní právo;38;trestni
+30 dopravní trestné činy;30;dopravní trestné činy;39;dopravn
+31 nadace;31;nadace;40;nadac
+31 trestné činy mladistvých;31;trestné činy mladistvých;41;mladistv
+32 hospodářské trestné činy;32;hospodářské trestné činy;42;hospodarsk
+32 nakladatelské smlouvy;32;nakladatelské smlouvy;43;nakladatel
+33 rodinné právo, výchova, výživné;33;rodinné právo, výchova, výživné;44;rodin
+34 rozvody, společné jmění manželů;34;rozvody, společné jmění manželů;45;rozvod
+35 veřejné zakázky;35;veřejné zakázky;46;verejne zakaz
+36 ochrana hospodářské soutěže;36;ochrana hospodářské soutěže;47;ochrana hosp
+37 výkon rozhodnutí, exekuce;37;výkon rozhodnutí, exekuce;48;exekuc
+38 pracovní právo;38;pracovní právo;49;pracovn
+39 správní právo;39;správní právo;50;spravn
+39 ochrana osobních údajů;39;ochrana osobních údajů;51;ochrana osobnich udaj
+40 cizinecké právo, azylové právo;40;cizinecké právo, azylové právo;52;azyl
+41 sociální a důchodové zabezpečení;41;sociální a důchodové zabezpečení;53;duchodov
+42 stavební právo;42;stavební právo;54;stavebn
+42 památky (obnova, rekonstrukce a restaurování);42;památky (obnova, rekonstrukce a restaurování);55;pamatk
+43 přestupkové právo;43;přestupkové právo;56;presupk
+44 živnostenské právo;44;živnostenské právo;57;zivnost
+45 zdravotnické právo;45;zdravotnické právo;58;zdravotn
+45 práva z přepravy;45;práva z přepravy;59;preprav
+46 telekomunikační právo, energetika;46;telekomunikační právo, energetika;60;energetik
+47 pojišťovací právo;47;pojišťovací právo;61;pojistovn
+47 právo belgické;47;právo belgické;62;belgic
+48 pozemkové právo, lesní právo, vodní právo;48;pozemkové právo, lesní právo, vodní právo;63;pozem
+49 právo životního prostředí;49;právo životního prostředí;64;zivotn
+50 právo územních samosprávných celků;50;právo územních samosprávných celků;65;samosprav
+51 právo ozbrojených složek;51;právo ozbrojených složek;66;ozbroj
+52 sportovní právo;52;sportovní právo;67;sportov
+53 právo slovenské;53;právo slovenské;68;slovensk
+54 právo německé;54;právo německé;69;nemeck
+55 právo polské;55;právo polské;70;polsk
+56 právo ruské;56;právo ruské;71;rusk
+57 právo francouzské;57;právo francouzské;72;francouzsk
+57 prodej  a transformace podniku;57;prodej  a transformace podniku;73;transformac
+58 právo italské;58;právo italské;74;italsk
+59 právo rakouské;59;právo rakouské;75;rakousk
+60 právo švýcarské;60;právo švýcarské;76;svycarsk
+61 restituce;61;restituce;77;restituc
+61 právo anglické;61;právo anglické;78;anglick
+63 rozhodčí řízení;63;rozhodčí řízení;79;rozhodc
+64 soutěžní právo;64;soutěžní právo;80;soutezn
+69 technické normy;69;technické normy;81;technicka norm
+70 telekomunikace;70;telekomunikace;82;telekomunikac
+73 Ústavní soud, řízení, zastupování;73;Ústavní soud, řízení, zastupování;83;zastupovan
+74 vodní právo;74;vodní právo;84;vodn
+75 vojenská služba, odpírání;75;vojenská služba, odpírání;85;vojensk
+77 zadávání veřejných zakázek;77;zadávání veřejných zakázek;86;zadavani verejn
+80 zemědělské právo;80;zemědělské právo;87;zemedelsk
+83 spotřebitelské právo;83;spotřebitelské právo;88;spotrebitel
+84 právo egyptské;84;právo egyptské;89;egyptsk
+85 ochrana proti diskriminaci;85;ochrana proti diskriminaci;90;diskrimin
+86 mezinárodní justiční spolupráce ve věcech trestních;86;mezinárodní justiční spolupráce ve věcech trestních;91;justicni spoluprac
