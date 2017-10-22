@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import * as V from 'victory';
+import { VictoryPie } from 'victory';
 //import { List, fromJS, Range } from 'immutable';
-//import './sudoku.css';
 
 const JSON = {
 	name: "Mgr. Jaroslav Topol",
@@ -105,7 +107,6 @@ function Info(props) {
 }
 
 function Statistics(props) {
-	console.log(props.stats);
 	return (
 		<div id="Statistics">
 			<div id="text">
@@ -114,19 +115,61 @@ function Statistics(props) {
 				<div id="succRate">{`${props.stats.succRate.value} ${props.stats.succRate.attr}`}</div>
 			</div>
 			<div id="charts">
-				<Chart />	
-				<Chart />	
-				<Chart />	
-				<Chart />	
+				<Chart 
+					text = {`meritorni     
+						konecne
+						rozhodnuti`
+						}
+					bar = {props.stats.succ.value}	
+					rest = {props.stats.rulingsCount.value - props.stats.succ.value}
+				/>	
+				<Chart 
+					text = {`nemeritorni
+						konecne
+						rozhodnuti`
+						}
+					bar = {props.stats.fail.value}	
+					rest = {props.stats.rulingsCount.value - props.stats.fail.value}
+				/>	
+				<Chart 
+					text = {`rozhodnuti o
+						zastaveni 
+						rizeni`
+						}
+					bar = {props.stats.stop.value}	
+					rest = {props.stats.rulingsCount.value - props.stats.fail.value}
+				/>	
+				<Chart 
+					text = {`uspesnost`
+						}
+					bar = {props.stats.succ.value}	
+					rest = {props.stats.rulingsCount.value - props.stats.succ.value}
+				/>	
 			</div>
 		</div>
 	);
 }
 
-function Chart () {
+function Chart (props) {
+	const bar = props.bar;
 	return (
 		<div className="Chart">
-				
+			<div className='chartText'>
+				{props.text}	
+			</div>
+			<VictoryPie 
+				data = {[
+					{ x: ' ', y: props.bar },
+					{ x: ' ', y: props.rest }
+				]}	
+				colorScale={["black","grey"]}
+				//animate = {{duration: 200}}
+				innerRadius={142}
+				padAngle='2'
+			/>
+			<div>
+				{((props.bar / (props.bar + props.rest))*100).toFixed(1) + '%'}
+			</div>
 		</div>
 	);
 }

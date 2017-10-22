@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "highcharts": "^6.0.2",
     "immutable": "^3.8.2",
+    "jquery": "^3.2.1",
+    "mdbootstrap": "^4.4.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
-    "unwritable": "^1.1.0"
+    "unwritable": "^1.1.0",
+    "victory": "^0.24.0"
   },
   "scripts": {
     "start": "react-scripts start",
