@@ -30,11 +30,18 @@ def advocate_geo(request):
   return web.Response(text=text)
 
 
+@asyncio.coroutine
+def index(request):
+    content = None
+    with open('./index.html', 'r') as content_file:
+        content = content_file.read()
+    return web.Response(text=content,content_type='text/html')
+
 # body = yield from request.json()
 
 app = web.Application()
 app.router.add_post('/advocate_geo', advocate_geo)
-#app.router.add_get('/{name}', handle)
+app.router.add_get('/', index)
 
 web.run_app(app)
 
