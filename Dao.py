@@ -104,7 +104,8 @@ LIMIT 1
         print(str([id, gps_lat,gps_lon]))
         yield from self.run_no_result("""
 UPDATE advocate SET (gps_lat, gps_lon) = (%s, %s)
-        """, (id, gps_lat, gps_lon))
+WHERE id = %s
+        """, (gps_lat, gps_lon, id))
 
 
 #         yield from self.run_no_result("""
@@ -116,3 +117,19 @@ UPDATE advocate SET (gps_lat, gps_lon) = (%s, %s)
         self._conn.close()
         self._pool.close()
         pass
+
+    def get_advocate_geo(self, topl_lat, topl_lon, botr_lat, botr_lon):
+        cur = yield from self.get_cursor()
+        yield from cur.execute("""
+SELECT id,name, gps_lat,gps_lon FROM advocate
+WHERE advocate.address IS NOT NULL
+ AND advocate.gps_lat < %s
+ AND advocate.gps_lon > %s
+ AND advocate.gps_lat > %s
+ AND advocate.gps_lon < %s
+""", (topl_lat, topl_lon, botr_lat, botr_lon))
+        ret = []
+        for row in cur:
+            ret.append({"id": row[0], "name": row[1], "lat": row[2], "lon": row[3]})
+        cur.close()
+        return ret

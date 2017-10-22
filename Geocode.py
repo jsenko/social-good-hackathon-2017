@@ -43,5 +43,5 @@ class Geocode:
             data["results"][0]["geometry"]["location"]["lat"],
             data["results"][0]["geometry"]["location"]["lng"]
         ]
-        print(str(res))
-        # return data
+        #print(str(res))
+        return res

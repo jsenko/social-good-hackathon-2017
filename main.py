@@ -34,11 +34,11 @@ def task5():
 def task6():
     loop.run_until_complete(dao.get_advocate_with_and_address_and_no_gps())
 
-def task6():
-    loop.run_until_complete(dao.get_advocate_with_and_address_and_no_gps())
+def task7():
+    loop.run_until_complete(gps.run())
 
 
-task6()
+task7()
 
 loop.run_until_complete(dao.close())
 loop.run_until_complete(client.close())

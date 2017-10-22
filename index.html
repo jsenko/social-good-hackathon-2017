@@ -34,25 +34,16 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/q.js/0.9.2/q.min.js"></script>
 
 
-<h1 style='font-family: "Courgette",cursive;  color: #333333; text-align: center;'>#suvšalině</h1>
-<a style='margin-left: 90%;' href="http://52.57.12.151/app.apk">Download the App</a>
-
-
- <!--  TYPE
-
-  <h1>is Kuba riding a tram?</h1>
-  <h1>#kubaisridingatram</h1>-->
 
         <!--    MAP -->
 
-        <div id='map' style='width: 60%; height: 100%; margin-top: 150px; margin-left: 40%; margin-bottom: 150px;'></div>
+        <div id='map' style='width: 100%; height: 100%;'></div>
         <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoicGV0ZXJyb2QiLCJhIjoiY2ozNnh3aGh1MDAxaDJ3bzcyZGdveXMyYyJ9.twQpxLjA5FBA6ARFxe3awg';
         var map = new mapboxgl.Map({
             container: 'map', // container id
-            style: 'mapbox://styles/peterrod/cj37nisvk000l2rqprljw6ksp', //hosted style id..... mapbox://styles/peterrod/cj37gflyl000f2rpgt9nxpsbk
-
-            center: [16.5773857,49.2302584], // starting position[49.23, 16.58].......  49.2302584,16.5773857,16z
+            style: 'mapbox://styles/peterrod/cj37nisvk000l2rqprljw6ksp',
+            center: [50.079859, 14.436779],
             zoom: 15 // starting zoom
         });
 
@@ -61,116 +52,28 @@
 
 
 
-    var trams = [];
-    var users = [];
-    var TICK_DELAY_MILLIS = 7 * 1000;
-    //var labels = {};
-
-
-    // function animateMarker(fromLat, toLat, fromLon, toLon, tram_id) {
-    //     // Update the data to a new position based on the animation timestamp. The
-    //     // divisor in the expression `timestamp / 1000` controls the animation speed.
-    //     var FPS = 30;
-    //     var ANIM_LENGTH_MILLIS = 7 * 1000;
-    //     var time = 0; // ms
-    //     var deltaLat = toLat - fromLat;
-    //     var deltaLon = toLon - fromLon;
-    //     //console.log('>>>>>' + deltaLon + deltaLat);
-    //
-    //     var animate = function() {
-    //
-    //         map.getSource('point'+tram_id).setData({
-    //           "type": "Point",
-    //           "coordinates": [
-    //             fromLon + ((deltaLon / ANIM_LENGTH_MILLIS) * time),
-    //             fromLat + ((deltaLat / ANIM_LENGTH_MILLIS) * time)
-    //           ]
-    //         });
-    //         time += 1000 / FPS;
-    //
-    //
-    //         if(time < ANIM_LENGTH_MILLIS)
-    //           setTimeout(animate, 1000 / FPS);
-    //     }
-    //
-    //     // Request the next frame of the animation.
-    //     setTimeout(animate, 1000 / FPS);
-    // }
 
   function init() {
-    $.get("http://52.57.12.151/stops", function( data ) {
-      //console.log(data);
-      //data = _.first(data, 10);
+    $.post("http://localhost:8080/advocate_geo",'{"topl_lat":50.0825778,"topl_lon":14.4224156,"botr_lat":50.007955,"botr_lon":14.673234}", function( data ) {
 
+      _.each(data, function(adv) {
 
-/*
-"id": "markers",
-    "type": "symbol",
-    "source": "markers",
-    "interactive": true,
-    "layout": {
-        "text-field": "{price2}",
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-        "text-offset": [0, 0.6],
-        "text-anchor": "top",
-        "text-size": 12,
-        "text-letter-spacing": 0.05,
-        "icon-image": "marker-15"
-    },
-    "paint": {
-        "text-color": "#fff",
-        "text-halo-width": 2,
-        "text-halo-color": "rgb(11, 148, 68)"
-    }
-*/
-
-
-      _.each(data, function(newstop) {
-
-          map.addSource('stop'+newstop.stop_id, {
+          map.addSource('adv_'+adv.id, {
               "type": "geojson",
               "data": {
                   "type": "Point",
                   "coordinates": [
-                      newstop.long,
-                      newstop.lat
+                      adv.lon,
+                      adv.lat
                   ]
+                  //"type": "circle",
+              // "paint": {
+              //     "circle-radius": 5,
+              //     "circle-color": "#000000"
+              // }
               }
           });
-
 /*
-{
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-77.031952, 38.913184]
-    },
-    properties: {
-      icon: {
-        className: 'my-icon icon-dc', // class name to style
-        html: '&#9733;', // add content inside the marker
-        iconSize: null // size of icon, use null to set the size in CSS
-      }
-    }
-  },
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-122.413682, 37.775408]
-    },
-    properties: {
-      icon: {
-        className: 'my-icon icon-sf', // class name to style
-        html: '&#9733;', // add content inside the marker
-        iconSize: null // size of icon, use null to set the size in CSS
-      }
-    }
-  }
-
-*/
-
-
           map.addLayer({
               "id": "stop"+newstop.stop_id,
               "source": "stop"+newstop.stop_id,
@@ -196,261 +99,20 @@
               //     "circle-color": "#000000"
               // }
           });
-
+*/
 
       });
     });
   };
 
 
-    function tick() {
-      // request new data
-      $.get("http://52.57.12.151/trams", function( data ) {
-        //console.log(data);
-        _.each(data, function(newtram) {
-
-
-
-
-          // find if the tram is in the list
-          var t = _.find(trams, function(e){
-             return e.tram_id === newtram.tram_id;
-          });
-          if(t != null) {
-            //console.log("updated");
-            // update the position
-            //var deltaLat = newtram.lat-t.lat;
-            //var deltaLon = newtram.lat-t.lat;
-            //if(deltaLon > 0 || deltaLat > 0) {
-              t.lat = newtram.lat;
-              t.long = newtram.long;
-              //animateMarker(t.lat, newtram.lat, t.long, newtram.long, newtram.tram_id);
-            //}
-          } else {
-            //console.log("new");
-            trams.push(newtram);
-
-            map.addSource('point'+newtram.tram_id, {
-                "type": "geojson",
-                "data": {
-                    "type": "Point",
-                    "coordinates": [
-                        newtram.long,
-                        newtram.lat
-                    ]
-                }
-            });
-
-            map.addLayer({
-                "id": "point"+newtram.tram_id,
-                "source": "point"+newtram.tram_id,
-                "type": "symbol",
-                // "paint": {
-                //     "circle-radius": 10,
-                //     "circle-color": "#ff0000"
-                // },
-
-                "layout": {
-                  "icon-image": "bus",
-                  "icon-size": 0.75,
-                  "text-field": newtram.tram_id + " \u2192 " + newtram.end_name,
-                  "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                  "text-offset": [0, 1.6],
-                  "text-anchor": "top",
-                  "text-size": 15,
-                  "text-letter-spacing": 0.05,
-                }
-            });
-
-            map.addSource('label'+newtram.tram_id, {
-                "type": "geojson",
-                "data": {
-                    "type": "Point",
-                    "coordinates": [
-                        newtram.long,
-                        newtram.lat
-                    ]
-                }
-            });
-            //
-            // map.addLayer({
-            //     "id": "label"+newtram.tram_id,
-            //     "source": "label"+newtram.tram_id,
-            //     "type": "symbol",
-            //     "interactive": true,
-            //     "layout": {
-            //       "text-field": "id " + newtram.tram_id,
-            //       "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            //       "text-offset": [0, 0.6],
-            //       "text-anchor": "top",
-            //       "text-size": 15,
-            //       "text-letter-spacing": 0.05,
-            //       //"icon-image": "marker-15"
-            //     },
-            //     "paint": {
-            //       "text-color": "#ffffff",
-            //       "text-halo-width": 3,
-            //       "text-halo-color": "rgb(0, 0, 0)"
-            //     }
-            //     // "type": "circle",
-            //     // "paint": {
-            //     //     "circle-radius": 5,
-            //     //     "circle-color": "#000000"
-            //     // }
-            // });
-
-          }
-        });
-
-
-        _.each(trams, function(t) {
-          //console.log('>>>'+ [t.lat, t.lon]);
-          map.getSource('point'+t.tram_id).setData(
-            {
-              "type": "Point",
-              "coordinates": [t.long, t.lat]
-            }
-
-          );
-          // map.getSource('label'+t.tram_id).setData(
-          //   {
-          //     "type": "Point",
-          //     "coordinates": [t.long, (t.lat + 0.0002)]
-          //   }
-          //
-          // );
-        });
-
-
-      });
-
-
-      $.get("http://52.57.12.151/users", function( data ) {
-        //console.log(data);
-        console.log(users);
-        _.each(data, function(newuser) {
-
-
-          var t = _.find(users, function(e){
-             return e.user_id === newuser.user_id;
-          });
-
-
-          if(t != null) {
-            //console.log("updated");
-            // update the position
-
-            //if((newuser.lat-t.lat + newuser.lng-t.lng) > 0) {
-              t.lat = newuser.lat;
-              t.lng = newuser.lng;
-              //animateMarker(t.lat, newtram.lat, t.long, newtram.long, newtram.tram_id);
-            //}
-          } else {
-            //console.log("new");
-            users.push(newuser);
-
-            map.addSource('user'+newuser.user_id, {
-                "type": "geojson",
-                "data": {
-                    "type": "Point",
-                    "coordinates": [
-                        newuser.lng,
-                        newuser.lat
-                    ]
-                }
-            });
-
-            map.addLayer({
-                "id": "user"+newuser.user_id,
-                "source": "user"+newuser.user_id,
-                "type": "symbol",
-                "layout": {
-                  "icon-image": "user",
-                  "icon-size": 0.4
-                },
-                "layout": {
-                  "icon-image": "user",
-                  "icon-size": 0.4,
-                  "text-field": newuser.user_name,
-                  "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                  "text-offset": [0, 2.4],
-                  "text-anchor": "top",
-                  //"font-color": "#0000ff",
-                  "text-size": 15,
-                  "text-letter-spacing": 0.05,
-                },
-                "paint": {
-                  "text-color": "#0000ff"
-                }
-            });
-
-          }
-        });
-
-
-        $('#actionLog').empty();
-        _.each(users, function(t) {
-
-          map.getSource('user'+t.user_id).setData(
-            {
-              "type": "Point",
-              "coordinates": [t.lng, t.lat]
-            }
-
-          );
-
-          $.get("http://52.57.12.151/status/" + t.user_id, function( data ) {
-
-              var status = "walking"
-              if(data !== null) {
-                var status = data.info;
-}
-
-                $('#actionLog').append('<p><em>' + t.user_name + '</em> is ' + status +'</p>');
-
-          });
-
-
-
-        });
-
-
-      });
-
-
-
-
-
-      Q.delay(TICK_DELAY_MILLIS)
-        .then(tick);
-    };
-
   map.on('load', () => {
-
-
-    map.loadImage('http://52.57.12.151/Bus-64.png', (error, image) => {
-            if (error) throw error;
-            map.addImage('bus', image);
-    });
-
-    map.loadImage('http://52.57.12.151/user.png', (error, image) => {
-            if (error) throw error;
-            map.addImage('user', image);
-    });
-
-
     init();
-    tick();
   });
 
 
 
 </script>
-
-<div id='actionLog' style='width: 40%; height: 100%; margin-top: 150px; margin-right: 60%; margin-bottom: 150px; background-color: #f2f2f2;'>
-
-
-    </div>
 
 </body>
 </html>
