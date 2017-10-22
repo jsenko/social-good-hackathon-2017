@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
-import Sudoku from './ReactSudoku.js';
+import Container from './componenets.js';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Sudoku />, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));
 registerServiceWorker();
