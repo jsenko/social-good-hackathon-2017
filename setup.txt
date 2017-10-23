@@ -1,0 +1,7 @@
+Deps:
+asyncio
+aiohttp
+json
+aiopg
+psycopg2
+sudo pip install beautifulsoup4
